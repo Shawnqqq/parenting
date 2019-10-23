@@ -47,10 +47,19 @@ const userController ={
     },
     all: async function(req,res,next){
         try{
-            const all = await userModels.all()
+            let totals = await userModels.all()
+            let total = totals.length
+            let females = await userModels.where({sex:2})
+            let female =  females.length
+            let pregnants = await userModels.where({state:2})
+            let pregnant =  pregnants.length
+            let breds = await userModels.where({state:3})
+            let bred = breds.length
             res.json({
                 code:200,
-                data:all,
+                data:{
+                    total,female,pregnant,bred
+                }
             })
         }
         catch(err){

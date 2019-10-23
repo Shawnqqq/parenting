@@ -27,6 +27,7 @@ const authController ={
             let token = authcode(encryption,'INCODE')
             res.json({
               code:200,
+              name:manageres[0].name,
               token:token
             })
         }
