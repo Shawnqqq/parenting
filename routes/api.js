@@ -7,6 +7,7 @@ const managerController = require('../controllers/manager')
 const userController = require('../controllers/user')
 const compilationController = require('../controllers/compilation')
 const sortController = require('../controllers/sort')
+const topicController = require('../controllers/topic')
 
 
 // 登录
@@ -29,7 +30,11 @@ router.put('/sort/:id',middleAuth,sortController.update);
 router.delete('/sort/:id',middleAuth,sortController.delete);
 router.get('/sort',middleAuth,sortController.all);
 router.get('/sort/:id',middleAuth,sortController.single);
-
-
+// 话题 接口
+router.get('/topic',middleAuth,topicController.all);
+router.get('/topic/:id',middleAuth,topicController.single);
+router.post('/topic',middleAuth,topicController.insert);
+router.put('/topic/:id',middleAuth,topicController.update);
+router.delete('/topic/:id',middleAuth,topicController.delete);
 
 module.exports = router;
