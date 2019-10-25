@@ -8,6 +8,7 @@ const userController = require('../controllers/user')
 const compilationController = require('../controllers/compilation')
 const sortController = require('../controllers/sort')
 const topicController = require('../controllers/topic')
+const answerController = require('../controllers/answer')
 
 
 // 登录
@@ -36,5 +37,7 @@ router.get('/topic/:id',middleAuth,topicController.single);
 router.post('/topic',middleAuth,topicController.insert);
 router.put('/topic/:id',middleAuth,topicController.update);
 router.delete('/topic/:id',middleAuth,topicController.delete);
+// 回答 接口
+router.get('/answer/:id',middleAuth,answerController.single)
 
 module.exports = router;

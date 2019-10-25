@@ -1,4 +1,5 @@
 const topicModels = require('../models/topic')
+const sortModels = require('../models/sort')
 
 const topicController = {
   insert: async function(req,res,next){
@@ -58,13 +59,23 @@ const topicController = {
       let pageSize = req.query.pageSize || 10 // 显示每页数量
       let nowPage= req.query.nowPage || 1  // 显示当前页数
       let offset = (nowPage-1)*pageSize   // 从多少条开始拿
-      let topic = await topicModels.all()
+      let filter = req.query.filter
+      let sort
+      let topic
+      let totals
+      if(filter){
+        sort = await sortModels.where({name:filter})
+        topic = await topicModels.sortPagination(pageSize,offset,sort)
+        totals = await topicModels.sortTotal(sort)
+      }else{
+        topic = await topicModels.all()
         .leftJoin('sort','topic.sort_id','sort.id')
         .column('topic.id','topic.title','topic.text','sort.name',
           'topic.pv','topic.follow','topic.answer_num')
         .offset(offset)
         .limit(pageSize)
-      let totals = await topicModels.all()
+        totals = await topicModels.all()
+      }
       let total = totals.length
       res.json({
         code:200,
@@ -97,8 +108,18 @@ const topicController = {
   },
   single: async function(req,res,next){
     let id = req.params.id
+    if(isNaN(id)){
+      res.json({
+        code:0,
+        message:'查询出错'
+      })
+      return
+    }
     try{
-      let topic = await topicModels.single(id);
+      let topic = await topicModels.where({'topic.id':id})
+        .leftJoin('sort','topic.sort_id','sort.id')
+        .column('topic.id','sort.name','topic.sort_id','topic.title','topic.text','topic.pv',
+        'topic.follow','topic.answer_num','show_answer')
       res.json({
         code:200,
         data:topic[0]
