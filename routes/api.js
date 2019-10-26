@@ -37,6 +37,7 @@ router.get('/topic/:id',middleAuth,topicController.single);
 router.post('/topic',middleAuth,topicController.insert);
 router.put('/topic/:id',middleAuth,topicController.update);
 router.delete('/topic/:id',middleAuth,topicController.delete);
+router.put('/topicShow/:id',middleAuth,topicController.showAnswer)
 // 回答 接口
 router.get('/answer/:id',middleAuth,answerController.single)
 

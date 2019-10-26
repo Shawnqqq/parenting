@@ -72,7 +72,6 @@ const answerController ={
         .leftJoin('user','answer.user_id','user.id')
         .column('answer.id','user.nick_name','answer.text','answer.create_time',
         'answer.praise','answer.collect')
-
         answer.forEach(data=>{
           data.create_time = formatDate(data.create_time)
         })

@@ -1,5 +1,7 @@
 const topicModels = require('../models/topic')
 const sortModels = require('../models/sort')
+const answerModels = require('../models/answer')
+const {formatDate} = require('../utils/formatDate');
 
 const topicController = {
   insert: async function(req,res,next){
@@ -119,16 +121,42 @@ const topicController = {
       let topic = await topicModels.where({'topic.id':id})
         .leftJoin('sort','topic.sort_id','sort.id')
         .column('topic.id','sort.name','topic.sort_id','topic.title','topic.text','topic.pv',
-        'topic.follow','topic.answer_num','show_answer')
+        'topic.follow','topic.answer_num','topic.show_answer')
+      let answer_id = topic[0].show_answer
+      let answer = await answerModels.where({'answer.id':answer_id})
+        .leftJoin('user','answer.user_id','user.id')
+        .column('answer.id','user.nick_name','answer.text','answer.create_time',
+        'answer.praise','answer.collect')
+        answer.forEach(data=>{
+          data.create_time = formatDate(data.create_time)
+        })
       res.json({
         code:200,
-        data:topic[0]
+        data:topic[0],
+        answer:answer[0]
       })
     }catch(err){
       console.log(err)
       res.json({
         code:0,
         message:'查找失败'
+      })
+    }
+  },
+  showAnswer: async function(req,res,next){
+    let id = req.params.id
+    let answer_id = req.body.answer_id
+    try{
+      await topicModels.update(id,{show_answer:answer_id})
+      res.json({
+        code:200,
+        message:'展示成功'
+      })
+    }catch(err){
+      console.log(err)
+      res.json({
+        code:0,
+        message:'展示失败'
       })
     }
   }
