@@ -1,14 +1,14 @@
 const topicModels = require('../models/topic')
-const sortModels = require('../models/sort')
+const categoryModels = require('../models/category')
 const answerModels = require('../models/answer')
 const {formatDate} = require('../utils/formatDate');
 
 const topicController = {
   insert: async function(req,res,next){
     let title = req.body.title
-    let sort_id = req.body.sort_id
+    let category_id = req.body.category_id
     let text = req.body.text
-    if(!title || !sort_id || !text){
+    if(!title || !category_id || !text){
       res.json({
         code:0,
         message:'缺少参数'
@@ -17,7 +17,7 @@ const topicController = {
     }
 
     try{
-      await topicModels.insert({title,sort_id,text})
+      await topicModels.insert({title,category_id,text})
       res.json({
         code:200,
         message:'增加成功'
@@ -33,9 +33,9 @@ const topicController = {
   update: async function(req,res,next){
     let id = req.params.id
     let title = req.body.title
-    let sort_id = req.body.sort_id
+    let category_id = req.body.category_id
     let text = req.body.text
-    if(!title || !sort_id || !text){
+    if(!title || !category_id || !text){
       res.json({
         code:0,
         message:'缺少参数'
@@ -43,7 +43,7 @@ const topicController = {
       return
     }
     try{
-      await topicModels.update(id,{title,sort_id,text})
+      await topicModels.update(id,{title,category_id,text})
       res.json({
         code:200,
         message:'修改成功'
@@ -66,13 +66,13 @@ const topicController = {
       let topic
       let totals
       if(filter){
-        sort = await sortModels.where({name:filter})
+        sort = await categoryModels.where({name:filter})
         topic = await topicModels.sortPagination(pageSize,offset,sort)
         totals = await topicModels.sortTotal(sort)
       }else{
         topic = await topicModels.all()
-        .leftJoin('sort','topic.sort_id','sort.id')
-        .column('topic.id','topic.title','topic.text','sort.name',
+        .leftJoin('category','topic.category_id','category.id')
+        .column('topic.id','topic.title','topic.text','category.name',
           'topic.pv','topic.follow','topic.answer_num')
         .offset(offset)
         .limit(pageSize)
@@ -119,8 +119,8 @@ const topicController = {
     }
     try{
       let topic = await topicModels.where({'topic.id':id})
-        .leftJoin('sort','topic.sort_id','sort.id')
-        .column('topic.id','sort.name','topic.sort_id','topic.title','topic.text','topic.pv',
+        .leftJoin('category','topic.category_id','category.id')
+        .column('topic.id','category.name','topic.category_id','topic.title','topic.text','topic.pv',
         'topic.follow','topic.answer_num','topic.show_answer')
       let answer_id = topic[0].show_answer
       let answer = await answerModels.where({'answer.id':answer_id})

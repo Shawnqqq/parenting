@@ -8,6 +8,10 @@ class Base {
     insert(params){
         return knex(this.table).insert(params);
     }
+    // 返回ID
+    return(params){
+        return knex(this.table).returning('id').insert(params);
+    }
     //查找用户
     single(id){
         return knex(this.table).where('id','=',id);
@@ -66,9 +70,9 @@ class Base {
     sortPagination(pageSize,offset,sort){
         if(sort[0]){
             return knex(this.table)
-                .where({sort_id:sort[0].id})
-                .leftJoin('sort','topic.sort_id','sort.id')
-                .column('topic.id','topic.title','topic.text','sort.name',
+                .where({category_id:sort[0].id})
+                .leftJoin('category','topic.category_id','category.id')
+                .column('topic.id','topic.title','topic.text','category.name',
                   'topic.pv','topic.follow','topic.answer_num')
                 .offset(offset)
                 .limit(pageSize)
@@ -80,7 +84,7 @@ class Base {
     sortTotal(sort){
         if(sort[0]){
             return knex(this.table)
-                .where({sort_id:sort[0].id})
+                .where({category_id:sort[0].id})
         }else{
             return 0
         }

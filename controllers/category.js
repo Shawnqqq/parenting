@@ -1,6 +1,6 @@
-const sortModels = require('../models/sort')
+const categoryModels = require('../models/category')
 
-const sortController ={
+const categoryController ={
   insert: async function(req,res,next){
     let name = req.body.name
     if(!name){
@@ -11,7 +11,7 @@ const sortController ={
       return
     }
     try{
-      await sortModels.insert({name})
+      await categoryModels.insert({name})
       res.json({
         code:200,
         message:'添加成功'
@@ -35,7 +35,7 @@ const sortController ={
       return
     }
     try{
-      await sortModels.update(id,{name})
+      await categoryModels.update(id,{name})
       res.json({
         code:200,
         message:'修改成功'
@@ -51,7 +51,7 @@ const sortController ={
   delete:async function(req,res,next){
     let id = req.params.id
     try{
-      await sortModels.delete(id)
+      await categoryModels.delete(id)
       res.json({
         code:200,
         message:'删除成功'
@@ -66,7 +66,7 @@ const sortController ={
   },
   all: async function(req,res,next){
     try{
-      const all = await sortModels.all()
+      const all = await categoryModels.all()
       res.json({
         code:200,
         data:all,
@@ -83,7 +83,7 @@ const sortController ={
   single: async function(req,res,next){
     let id = req.params.id;
     try{
-      let singles = await sortModels.single(id)
+      let singles = await categoryModels.single(id)
       let single = singles[0]
       res.json({
           code:200,
@@ -100,4 +100,4 @@ const sortController ={
   }
 }
 
-module.exports = sortController;
+module.exports = categoryController;

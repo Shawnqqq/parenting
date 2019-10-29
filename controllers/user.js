@@ -70,6 +70,31 @@ const userController ={
             })
         }
     },
+    user: async function(req,res,next){
+        try{
+            let pageSize = req.query.pageSize || 10 // 显示每页数量
+            let nowPage= req.query.nowPage || 1  // 显示当前页数
+            let offset = (nowPage-1)*pageSize   // 从多少条开始拿
+
+            let user = await userModels.all()
+                .offset(offset)
+                .limit(pageSize)
+
+            let totals = await userModels.all()
+            let total = totals.length
+            res.json({
+                code:200,
+                data:user,
+                total:total
+            })
+        }catch(err){
+            console.log(err)
+            res.json({
+                code:200,
+                message:'查找失败'
+            })
+        }
+    },
     update: async function(req,res,next){
         let nick_name = req.body.nick_name;
         let sex = req.body.sex;

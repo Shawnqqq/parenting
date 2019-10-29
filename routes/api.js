@@ -5,14 +5,15 @@ const middleAuth = require('../middleauth/middleAuth')
 const authController =require('../controllers/auth')
 const managerController = require('../controllers/manager')
 const userController = require('../controllers/user')
-const compilationController = require('../controllers/compilation')
-const sortController = require('../controllers/sort')
+const columnController = require('../controllers/column')
+const categoryController = require('../controllers/category')
 const topicController = require('../controllers/topic')
 const answerController = require('../controllers/answer')
 
 
 // 登录
 router.post('/auth/login',authController.login)
+router.post('/wxauth/login',authController.wxLogin)
 // 管理员 接口
 router.get('/manager',middleAuth,managerController.all);
 router.get('/manager/:id',middleAuth,managerController.single);
@@ -21,16 +22,17 @@ router.put('/manager/:id',middleAuth,managerController.update);
 router.delete('/manager/:id',middleAuth,managerController.delete);
 // 用户 接口
 router.get('/user',middleAuth,userController.all);
+router.get('/userInfo',middleAuth,userController.user);
 router.post('/user',middleAuth,userController.insert);
 router.get('/user/:id',middleAuth,userController.single);
 router.put('/user/:id',middleAuth,userController.update);
 router.delete('/user/:id',middleAuth,userController.delete);
 // 分类 接口
-router.post('/sort',middleAuth,sortController.insert);
-router.put('/sort/:id',middleAuth,sortController.update);
-router.delete('/sort/:id',middleAuth,sortController.delete);
-router.get('/sort',middleAuth,sortController.all);
-router.get('/sort/:id',middleAuth,sortController.single);
+router.post('/category',middleAuth,categoryController.insert);
+router.put('/category/:id',middleAuth,categoryController.update);
+router.delete('/category/:id',middleAuth,categoryController.delete);
+router.get('/category',middleAuth,categoryController.all);
+router.get('/category/:id',middleAuth,categoryController.single);
 // 话题 接口
 router.get('/topic',middleAuth,topicController.all);
 router.get('/topic/:id',middleAuth,topicController.single);
