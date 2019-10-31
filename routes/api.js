@@ -9,6 +9,7 @@ const columnController = require('../controllers/column')
 const categoryController = require('../controllers/category')
 const topicController = require('../controllers/topic')
 const answerController = require('../controllers/answer')
+const wxTopicController = require('../controllers/wxTopic')
 
 
 // 登录
@@ -42,5 +43,11 @@ router.delete('/topic/:id',middleAuth,topicController.delete);
 router.put('/topicShow/:id',middleAuth,topicController.showAnswer)
 // 回答 接口
 router.get('/answer/:id',middleAuth,answerController.single)
+
+
+// 微信小程序接口
+router.get('/wxcategory',categoryController.all)
+router.get('/wxTopic',wxTopicController.all)
+router.get('/wxTopic/:id',wxTopicController.single)
 
 module.exports = router;

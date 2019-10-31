@@ -31,6 +31,9 @@ class Base {
     where(params){
         return knex(this.table).where(params)
     }
+    whereIn(key,arr){
+        return knex(this.table).whereIn(key,arr)
+    }
     //查找用户的某个数据
     delete(id){
         return knex(this.table).where('id','=',id).del()
