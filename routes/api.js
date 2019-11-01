@@ -10,6 +10,7 @@ const categoryController = require('../controllers/category')
 const topicController = require('../controllers/topic')
 const answerController = require('../controllers/answer')
 const wxTopicController = require('../controllers/wxTopic')
+const wxAnswerController = require('../controllers/wxAnswer')
 
 
 // 登录
@@ -46,8 +47,13 @@ router.get('/answer/:id',middleAuth,answerController.single)
 
 
 // 微信小程序接口
-router.get('/wxcategory',categoryController.all)
-router.get('/wxTopic',wxTopicController.all)
-router.get('/wxTopic/:id',wxTopicController.single)
+router.get('/wxcategory',categoryController.all)    //  拿分类
+router.get('/wxTopic',wxTopicController.all)        //  拿全部topic
+router.get('/wxTopic/:id',wxTopicController.single) //  拿单个topic
+router.put('/wxTopiPv',wxTopicController.pv)        //   pv 接口
+router.post('/wxTopic',wxTopicController.follow)    //   关注接口
+
+router.put('/wxPraise',wxAnswerController.praise)   // 点赞
+router.put('/wxUnPraise',wxAnswerController.unpraise)   // 取消点赞
 
 module.exports = router;

@@ -1,6 +1,8 @@
 const topicModels = require('../models/topic')
 const answerModels = require('../models/answer')
 const replyModels = require('../models/reply')
+const user_topicModels = require('../models/user_topic')
+const user_answerModels = require('../models/user_answer')
 
 const wxTopicController={
   all:async function(req,res,next){
@@ -42,6 +44,7 @@ const wxTopicController={
   },
   single:async function(req,res,next){
     let nowPage = Number(req.query.nowPage) || 0
+    let user_id = req.query.user_id
     let topic_id = req.params.id
     try{
       let topic = await topicModels.where({'topic.id':topic_id})
@@ -55,27 +58,76 @@ const wxTopicController={
         .limit(10)
       let answer_id = answer.map(data=>{return data.id})
       let reply = await replyModels.whereIn('answer_id',answer_id)
+      let praise = await user_answerModels.where({user_id:user_id,type:1}).whereIn('answer_id',answer_id)
       
       let answer_val = answer.map(data=>{
         let replyTotal = 0
+        let active = false
         reply.forEach(arr =>{
           if(arr.answer_id == data.id){
             replyTotal += 1
           }
         })
+        if(praise.length){
+          data.id == praise[0].answer_id ? active = true : ''
+        }
+        data.active = active
         data.replyTotal = replyTotal
         return data
       })
       res.json({
         code:200,
         topic:topic[0],
-        answer:answer_val
+        answer:answer_val,
+        nowPage:nowPage
       })
     }catch(err){
       console.log(err)
       res.json({
         code:0,
         message:'查找错误'
+      })
+    }
+  },
+  pv:async function(req,res,next){
+    let topic_id = req.body.id
+    try{
+      await topicModels.where({id:topic_id}).increment('pv',1)
+      res.json({
+        code:200,
+        message:'调用成功'
+      })
+    }catch(err){
+      console.log(err)
+      res.json({
+        code:0,
+        message:'服务器错误'
+      })
+    }
+  },
+  follow:async function(req,res,next){
+    let topic_id = req.body.topic_id
+    let user_id  = req.body.user_id
+    try{
+      let repeat = await user_topicModels.where({topic_id,user_id})
+      if(repeat.length){
+        res.json({
+          code:200,
+          message:'请勿重复关注'
+        })
+        return
+      }
+      await topicModels.where({id:topic_id}).increment('follow',1)
+      await user_topicModels.insert({user_id,topic_id})
+      res.json({
+        code:200,
+        message:'关注成功'
+      })
+    }catch(err){
+      console.log(err)
+      res.json({
+        code:0,
+        message:'服务器错误'
       })
     }
   }
