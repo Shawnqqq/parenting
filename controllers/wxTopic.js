@@ -42,6 +42,22 @@ const wxTopicController={
       })
     }
   },
+  title:async function(req,res,next){
+    let id = req.params.id
+    try{
+      let title = await topicModels.where({id}).column('topic.title')
+      res.json({
+        code:200,
+        data:title[0]
+      })
+    }catch(err){
+      console.log(err)
+      res.json({
+        code:0,
+        message:"服务器错误"
+      })
+    }
+  },
   single:async function(req,res,next){
     let nowPage = Number(req.query.nowPage) || 0
     let user_id = req.query.user_id
@@ -59,18 +75,16 @@ const wxTopicController={
       let answer_id = answer.map(data=>{return data.id})
       let reply = await replyModels.whereIn('answer_id',answer_id)
       let praise = await user_answerModels.where({user_id:user_id,type:1}).whereIn('answer_id',answer_id)
-      
       let answer_val = answer.map(data=>{
         let replyTotal = 0
-        let active = false
         reply.forEach(arr =>{
           if(arr.answer_id == data.id){
             replyTotal += 1
           }
         })
-        if(praise.length){
-          data.id == praise[0].answer_id ? active = true : ''
-        }
+        let active = praise.some(item=>
+          data.id == item.answer_id
+        )
         data.active = active
         data.replyTotal = replyTotal
         return data

@@ -11,6 +11,7 @@ const topicController = require('../controllers/topic')
 const answerController = require('../controllers/answer')
 const wxTopicController = require('../controllers/wxTopic')
 const wxAnswerController = require('../controllers/wxAnswer')
+const qiniuController = require('../controllers/qiniu')
 
 
 // 登录
@@ -45,15 +46,22 @@ router.put('/topicShow/:id',middleAuth,topicController.showAnswer)
 // 回答 接口
 router.get('/answer/:id',middleAuth,answerController.single)
 
-
+// 七牛云 
+router.get('/qiniu',qiniuController.upload)  
 // 微信小程序接口
 router.get('/wxcategory',categoryController.all)    //  拿分类
 router.get('/wxTopic',wxTopicController.all)        //  拿全部topic
 router.get('/wxTopic/:id',wxTopicController.single) //  拿单个topic
 router.put('/wxTopiPv',wxTopicController.pv)        //   pv 接口
 router.post('/wxTopic',wxTopicController.follow)    //   关注接口
+router.get('/wxTopicTitle/:id',wxTopicController.title)
 
 router.put('/wxPraise',wxAnswerController.praise)   // 点赞
 router.put('/wxUnPraise',wxAnswerController.unpraise)   // 取消点赞
+router.get('/wxAnswer/:id',wxAnswerController.single)   // 回答单个
+router.put('/wxCollect',wxAnswerController.collect)     //  收藏
+router.put('/wxUnCollect',wxAnswerController.unCollect)   // 取消收藏
+router.post('/wxReply',wxAnswerController.reply)      // 发布评论
+router.post('/wxAnswer',wxAnswerController.insert)    // 增加回答
 
 module.exports = router;
