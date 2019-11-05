@@ -45,9 +45,15 @@ router.delete('/topic/:id',middleAuth,topicController.delete);
 router.put('/topicShow/:id',middleAuth,topicController.showAnswer)
 // 回答 接口
 router.get('/answer/:id',middleAuth,answerController.single)
-
+// 合辑接口
+router.post('/column',middleAuth,columnController.insert)
+router.get('/column',middleAuth,columnController.all)
+router.get('/column/:id',middleAuth,columnController.single)
+router.put('/column/:id',middleAuth,columnController.update)
+router.get('/columnSelected/:id',middleAuth,columnController.selected)
+router.get('/columnUnSelected/:id',middleAuth,columnController.UnSelected)
 // 七牛云 
-router.get('/qiniu',qiniuController.upload)  
+router.get('/qiniu',qiniuController.upload)
 // 微信小程序接口
 router.get('/wxcategory',categoryController.all)    //  拿分类
 router.get('/wxTopic',wxTopicController.all)        //  拿全部topic
