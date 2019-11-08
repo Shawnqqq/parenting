@@ -12,7 +12,8 @@ const answerController = require('../controllers/answer')
 const wxTopicController = require('../controllers/wxTopic')
 const wxAnswerController = require('../controllers/wxAnswer')
 const qiniuController = require('../controllers/qiniu')
-
+const tableController = require('../controllers/table')
+const bannerController = require('../controllers/banner')
 
 // 登录
 router.post('/auth/login',authController.login)
@@ -26,7 +27,6 @@ router.delete('/manager/:id',middleAuth,managerController.delete);
 // 用户 接口
 router.get('/user',middleAuth,userController.all);
 router.get('/userInfo',middleAuth,userController.user);
-router.post('/user',middleAuth,userController.insert);
 router.get('/user/:id',middleAuth,userController.single);
 router.put('/user/:id',middleAuth,userController.update);
 router.delete('/user/:id',middleAuth,userController.delete);
@@ -52,6 +52,22 @@ router.get('/column/:id',middleAuth,columnController.single)
 router.put('/column/:id',middleAuth,columnController.update)
 router.get('/columnSelected/:id',middleAuth,columnController.selected)
 router.get('/columnUnSelected/:id',middleAuth,columnController.UnSelected)
+router.post('/columnSelected',middleAuth,columnController.insertTopic)
+router.put('/columnSelected',middleAuth,columnController.deleteTopic)
+// 首页接口
+router.get('/table/1/selected',middleAuth,tableController.recommend)
+router.get('/table/1/unSelected',middleAuth,tableController.unRecommend)
+router.get('/table/2/selected',middleAuth,tableController.answer)
+router.get('/table/2/unSelected',middleAuth,tableController.unAnswer)
+router.post('/table',middleAuth,tableController.insert)
+router.put('/table',middleAuth,tableController.deleted)
+// 轮播图banner接口
+router.post('/banner',middleAuth,bannerController.insert)
+router.get('/banner',middleAuth,bannerController.all)
+router.get('/banner/:id',middleAuth,bannerController.single)
+router.put('/banner/:id',middleAuth,bannerController.update)
+router.delete('/banner/:id',middleAuth,bannerController.delete)
+
 // 七牛云 
 router.get('/qiniu',qiniuController.upload)
 // 微信小程序接口
@@ -69,5 +85,20 @@ router.put('/wxCollect',wxAnswerController.collect)     //  收藏
 router.put('/wxUnCollect',wxAnswerController.unCollect)   // 取消收藏
 router.post('/wxReply',wxAnswerController.reply)      // 发布评论
 router.post('/wxAnswer',wxAnswerController.insert)    // 增加回答
+
+router.get('/wxColumn',columnController.all)          // 全部合辑
+router.get('/wxColumn/:id',columnController.single)   // 单个合辑
+router.get('/wxColumnSelected/:id',columnController.selected)  // 合辑的话题
+
+router.get('/wxRecommend',tableController.wxRecommend)   // 推荐的话题
+router.get('/wxAnswer',tableController.wxAnswer)       // 推荐的答题
+router.get('/wxBanner',bannerController.all)           // 轮播
+router.get('/wxBanner/:id',bannerController.single)
+
+router.get('/wxUserFollow/:id',userController.follow)   // 用户关注的话题
+router.get('/wxUserCollect/:id',userController.collect) // 用户收藏的回答
+router.get('/wxUserSend/:id',userController.send)       // 用户发布的回答
+router.put('/wxUser/:id',userController.update)         // 修改用户信息
+router.get('/wxUser/:id',userController.single)
 
 module.exports = router;

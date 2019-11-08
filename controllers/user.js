@@ -1,32 +1,10 @@
 const userModels = require('../models/user')
+const user_topicModels = require('../models/user_topic')
+const user_answerModels = require('../models/user_answer')
+const replyModels = require('../models/reply')
+const answerModels = require('../models/answer')
 
 const userController ={
-    insert: async function(req,res,next){
-        let nick_name = req.body.nick_name;
-        let sex = req.body.sex;
-        let avatar = req.body.avatar;
-        // if(!nick_name || !sex || !avatar){
-        //     res.json({
-        //         code:0, 
-        //         message:'缺少参数'
-        //     })
-        //     return
-        // }
-        try{
-          await userModels.insert({nick_name,sex,avatar})
-          res.json({
-              code:200,
-              massage: '添加成功'
-          })
-        }
-        catch(err){
-          console.log(err)
-          res.json({
-              code:0,
-              message:'添加失败'
-          })
-        }
-    },
     single: async function(req,res,next){
         let id = req.params.id;
         try{
@@ -99,16 +77,15 @@ const userController ={
         let nick_name = req.body.nick_name;
         let sex = req.body.sex;
         let avatar = req.body.avatar;
+        let state = req.body.state
         let id = req.params.id;
-        // if(!nick_name || !sex || !avatar){
-        //     res.json({
-        //         code:0, 
-        //         massage:'缺少参数'
-        //     })
-        //     return
-        // }
+        let params={}
+        if(nick_name)params.nick_name = nick_name
+        if(sex)params.sex = sex
+        if(avatar)params.avatar = avatar
+        if(state)params.state = state
         try{
-            await userModels.update(id,{nick_name,sex,avatar})
+            await userModels.update(id,params)
             res.json({
                 code:200,
                 message:'修改成功'
@@ -135,6 +112,100 @@ const userController ={
             res.json({
                 code:0,
                 message:'删除失败'
+            })
+        }
+    },
+    follow: async function(req,res,next){
+			let id = req.params.id
+			try{
+				let topic = await user_topicModels.where({'user_topic.user_id':id})
+					.leftJoin('topic','user_topic.topic_id','topic.id')
+					.column('topic.id','topic.title','topic.follow','topic.answer_num')
+				res.json({
+					code:200,
+					data:topic
+				})
+			}catch(err){
+				console.log(err)
+				res.json({
+					code:0,
+					message:'服务器错误'
+				})
+			}
+    },
+    collect: async function(req,res,next){
+        let id = req.params.id
+        try{
+            let answer = await user_answerModels.where({'user_answer.user_id':id,type:2})
+                .leftJoin('answer','user_answer.answer_id','answer.id')
+                .column('answer.id','answer.user_id','answer.text','answer.create_time',
+                'answer.praise','answer.collect')
+                .leftJoin('user','answer.user_id','user.id')
+                .column('user.nick_name','user.avatar')
+
+            let answer_id = answer.map(data=>{return data.id})
+            let reply = await replyModels.whereIn('answer_id',answer_id)
+            let praise = await user_answerModels.where({user_id:id,type:1}).whereIn('answer_id',answer_id)
+            let answer_val = answer.map(data=>{
+                let replyTotal = 0
+                reply.forEach(arr =>{
+                    if(arr.answer_id == data.id){
+                        replyTotal += 1
+                    }
+                })
+                let active = praise.some(item=>
+                    data.id == item.answer_id
+                )
+                data.active = active
+                data.replyTotal = replyTotal
+                return data
+            })
+                res.json({
+                    code:200,
+                    data:answer_val
+                })
+        }catch(err){
+            console.log(err)
+            res.json({
+                code:0,
+                message:'服务器错误'
+            })
+        }
+    },
+    send: async function(req,res,next){
+        let id = req.params.id
+        try{
+            let answer = await answerModels.where({'answer.user_id':id})
+                .leftJoin('user','answer.user_id','user.id')
+                .column('answer.id','answer.user_id','answer.text','answer.create_time',
+                'answer.praise','answer.collect','user.nick_name','user.avatar')
+
+            let answer_id = answer.map(data=>{return data.id})
+            let reply = await replyModels.whereIn('answer_id',answer_id)
+            let praise = await user_answerModels.where({user_id:id,type:1}).whereIn('answer_id',answer_id)
+            let answer_val = answer.map(data=>{
+                let replyTotal = 0
+                reply.forEach(arr =>{
+                    if(arr.answer_id == data.id){
+                        replyTotal += 1
+                    }
+                })
+                let active = praise.some(item=>
+                    data.id == item.answer_id
+                )
+                data.active = active
+                data.replyTotal = replyTotal
+                return data
+            })
+                res.json({
+                    code:200,
+                    data:answer_val
+                })
+        }catch(err){
+            console.log(err)
+            res.json({
+                code:0,
+                message:'服务器错误'
             })
         }
     }

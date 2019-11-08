@@ -86,8 +86,11 @@ const columnController ={
   selected:async function(req,res,next){
     let id = req.params.id
     try{
-      let topic_id = await column_topicModels.where({topic_id:id})
-      let data = await topicModels.whereIn('topic.id',topic_id)
+      let topicIds = await column_topicModels.where({column_id:id})
+      let topicId = topicIds.map(data=>{
+        return data.topic_id
+      })
+      let data = await topicModels.whereIn('topic.id',topicId)
         .leftJoin('category','topic.category_id','category.id')
         .column({'topic_id':'topic.id'},{'category_id':'category.id'},'category.name','topic.title',
         'topic.pv','topic.follow','topic.answer_num')
@@ -109,23 +112,74 @@ const columnController ={
     let nowPage= req.query.nowPage || 1  // 显示当前页数
     let offset = (nowPage-1)*pageSize   // 从多少条开始拿
     try{
-      let topic_id = await column_topicModels.where({topic_id:id})  
-      let data = await topicModels.whereNotIn('topic.id',topic_id)
+      let topicIds = await column_topicModels.where({column_id:id})  
+      let topicId = topicIds.map(data=>{
+        return data.topic_id
+      })
+      let data = await topicModels.whereNotIn('topic.id',topicId)
         .leftJoin('category','topic.category_id','category.id')
         .column({'topic_id':'topic.id'},{'category_id':'category.id'},'category.name','topic.title',
         'topic.pv','topic.follow','topic.answer_num')
         .offset(offset)
         .limit(pageSize)
-      
+      let totals = await topicModels.whereNotIn('topic.id',topicId)
+      let total = totals.length
       res.json({
         code:200,
-        data
+        data,
+        total
       })
     }catch(err){
       console.log(err)
       res.json({
         code:0,
         message:"服务器错误"
+      })
+    }
+  },
+  insertTopic: async function(req,res,next){
+    let params = req.body.params
+    if(!params){
+      res.json({
+        code:0,
+        message:'缺少参数'
+      })
+      return
+    }
+    try{
+      await column_topicModels.insert(params)
+      res.json({
+        code:200,
+        message:'增加成功'
+      })
+    }catch(err){
+      console.log(err)
+      res.json({
+        code:0,
+        message:'服务器错误'
+      })
+    }
+  },
+  deleteTopic: async function(req,res,next){
+    let params = req.body.params
+    if(!params){
+      res.json({
+        code:0,
+        message:'缺少参数'
+      })
+      return
+    }
+    try{
+      await column_topicModels.whereIn(['topic_id','column_id'],params).del()
+      res.json({
+        code:200,
+        message:'删除成功'
+      })
+    }catch(err){
+      console.log(err)
+      res.json({
+        code:0,
+        message:'服务器错误'
       })
     }
   }
