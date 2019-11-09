@@ -11,7 +11,7 @@
  Target Server Version : 100316
  File Encoding         : 65001
 
- Date: 09/11/2019 17:28:00
+ Date: 10/11/2019 00:41:19
 */
 
 SET NAMES utf8mb4;
@@ -30,18 +30,36 @@ CREATE TABLE `answer`  (
   `praise` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT '0',
   `collect` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT '0',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_bin ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_bin ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of answer
 -- ----------------------------
-INSERT INTO `answer` VALUES (1, '9', '1', '<p>11月去澳门，宝宝不到半岁，因为没有吃辅食带的东西很简单：ergobaby背带，尿不湿，安抚奶嘴，小玩具，包巾，棉柔巾，凡士林。</p>', '2019-11-09 17:20:19', '1', '0');
+INSERT INTO `answer` VALUES (1, '9', '1', '<p>11月去澳门，宝宝不到半岁，因为没有吃辅食带的东西很简单：ergobaby背带，尿不湿，安抚奶嘴，小玩具，包巾，棉柔巾，凡士林。</p>', '2019-11-09 17:20:19', '2', '1');
 INSERT INTO `answer` VALUES (2, '9', '2', '<p>虽然天气很热，但是绝对不能让宝宝光着睡觉的。可以给宝宝晚上穿一件爬服或者包屁衣，可以保护肚子，不会让宝宝受凉，最好再给宝宝肚子上搭条毛巾。</p>', '2019-11-09 17:23:16', '0', '0');
 INSERT INTO `answer` VALUES (3, '9', '1', '<p>如果要带婴儿出去旅游的话，一定要带好相关的证件，尤其是在出国旅游的时候，一定要将这些准备好，然后就是准备好婴儿日常所需要的奶瓶或者是纸尿裤以及换洗的衣服等等。而且一般的人在带婴儿旅游的时候都会选择温暖的时候去旅游，所以一定要记着带雨伞以及厚的衣服。</p>', '2019-11-09 17:24:12', '0', '0');
 INSERT INTO `answer` VALUES (4, '9', '6', '<p>很多男人平时不光抽烟，也会喝酒，尤其是应酬的时候，男人对烟酒的需求量比女人要大很多，但是当自己的另一半怀孕了之后，丈夫们这个时候就应该远离这两样东西了，烟酒当中都含有不利于胎儿发育的成分，男人坐在一边抽烟，老婆坐在一边会吸入二手烟，对肚子里的娃非常不好，时间长了，胎儿会出现一些问题，所以告诫那些即将成为爸爸的男人们，为了娃的健康暂时告别烟酒吧。</p>', '2019-11-09 17:24:45', '1', '0');
 INSERT INTO `answer` VALUES (5, '9', '6', '<p>女人在怀孕之后，身体会发生一些变化，而且挺着个大肚子，非常容易累，行动也不是很方便，这个时候有些家务活可能就没办法做了，如果丈夫在这个时候还不主动帮妻子分担一部分家务活，而是做在一边当甩手掌柜的，所有的活儿都让孕妈一个人去完成，那么对肚子里的娃也不太好，时间长了不仅会让孕妈腰酸背痛，严重的还会导致胎儿出问题。</p><p><br></p><p>　　所以建议各位准爸爸们，要有一个清晰的意识，意识到女人怀孕很辛苦，能帮忙的时候一定要主动帮忙，这样孕妈才能多休息一会儿，才更有利于胎儿发育。</p>', '2019-11-09 17:24:58', '0', '0');
 INSERT INTO `answer` VALUES (6, '9', '6', '<p>怀孕后女人的情绪非常不稳定，一会高兴，一会悲伤的，那么作为另一半来说就要适时去安慰一下了，不要去指责妻子，应该给妻子更多的理解和包容，况且孕妈的心情好坏会直接影响到肚子里的娃，吵架只会让夫妻感情越来越不好，孕妇心情也受到影响，孕妇心情一不好，胎儿就会受影响。</p>', '2019-11-09 17:25:08', '1', '0');
-INSERT INTO `answer` VALUES (7, '9', '8', '<p>很多准妈妈都听家里老人说，清明节不可以出门。</p><p><br></p><p>　　她们认为清明节阴气太重，路上总有烧纸的人群或者火堆，准妈妈出门时容易遇见不干净的东西。</p><p><br></p><p>　　这是迷信的说法不可信，但每个地方的风俗都不一样，准妈妈还是尊重长辈的意见，没有特别着急的事情最好是别出门，以保证家庭和睦。</p>', '2019-11-09 17:26:09', '0', '0');
+INSERT INTO `answer` VALUES (7, '9', '8', '<p>很多准妈妈都听家里老人说，清明节不可以出门。</p><p><br></p><p>　　她们认为清明节阴气太重，路上总有烧纸的人群或者火堆，准妈妈出门时容易遇见不干净的东西。</p><p><br></p><p>　　这是迷信的说法不可信，但每个地方的风俗都不一样，准妈妈还是尊重长辈的意见，没有特别着急的事情最好是别出门，以保证家庭和睦。</p>', '2019-11-09 17:26:09', '0', '1');
+INSERT INTO `answer` VALUES (8, '10', '1', '<p>带脑子</p>', '2019-11-10 00:36:55', '0', '0');
+
+-- ----------------------------
+-- Table structure for article
+-- ----------------------------
+DROP TABLE IF EXISTS `article`;
+CREATE TABLE `article`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `content` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT NULL,
+  `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_bin ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of article
+-- ----------------------------
+INSERT INTO `article` VALUES (2, 'http://q0fobvvwa.bkt.clouddn.com/parenting/banner/1573310117196_recruit-content.png', '育儿达人招募');
+INSERT INTO `article` VALUES (3, 'http://q0fobvvwa.bkt.clouddn.com/parenting/banner/1573310345938_strategy-content.png', '新手攻略');
 
 -- ----------------------------
 -- Table structure for banner
@@ -51,14 +69,15 @@ CREATE TABLE `banner`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `image_url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT NULL,
   `content` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT NULL,
+  `pages` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_bin ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_bin ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of banner
 -- ----------------------------
-INSERT INTO `banner` VALUES (3, 'http://q0fobvvwa.bkt.clouddn.com/parenting/banner/1573116591120_recruit.png', 'http://q0fobvvwa.bkt.clouddn.com/parenting/banner/1573116602551_recruit-content.png');
-INSERT INTO `banner` VALUES (4, 'http://q0fobvvwa.bkt.clouddn.com/parenting/banner/1573116616553_strategy.png', 'http://q0fobvvwa.bkt.clouddn.com/parenting/banner/1573116620321_strategy-content.png');
+INSERT INTO `banner` VALUES (1, 'http://q0fobvvwa.bkt.clouddn.com/parenting/banner/1573315995903_recruit.png', NULL, '2');
+INSERT INTO `banner` VALUES (2, 'http://q0fobvvwa.bkt.clouddn.com/parenting/banner/1573316152067_strategy.png', NULL, '3');
 
 -- ----------------------------
 -- Table structure for category
@@ -79,7 +98,6 @@ INSERT INTO `category` VALUES (9, '疾病护理');
 INSERT INTO `category` VALUES (11, '养娃趣事');
 INSERT INTO `category` VALUES (12, '日常护理');
 INSERT INTO `category` VALUES (13, '好物推荐');
-INSERT INTO `category` VALUES (14, '巴拉巴拉');
 
 -- ----------------------------
 -- Table structure for column
@@ -146,8 +164,8 @@ CREATE TABLE `manager`  (
 -- ----------------------------
 -- Records of manager
 -- ----------------------------
-INSERT INTO `manager` VALUES (1, '13112808045', '112233', '八仔');
-INSERT INTO `manager` VALUES (4, '14111111111', '123456', '阿信');
+INSERT INTO `manager` VALUES (1, '13112808045', '112233', '周华健');
+INSERT INTO `manager` VALUES (4, '14111111111', '123456', '李怀瑾');
 
 -- ----------------------------
 -- Table structure for reply
@@ -218,13 +236,13 @@ CREATE TABLE `topic`  (
 -- ----------------------------
 -- Records of topic
 -- ----------------------------
-INSERT INTO `topic` VALUES (1, '11', '暑假带宝宝出游得准备哪写东西？', '从怀孕到生产，再到养娃，再渡过初为人母的这一年多时间后,很多妈妈蠢蠢欲动，想要带娃出去走走。现在娃还小，可以出去吗。如果要出去，需要准备哪些东西呢？有出行经验的妈妈可以在下方回复，和新手妈妈们聊一聊夏天带娃的那些事儿...', '33', '1', '2', '1');
-INSERT INTO `topic` VALUES (2, '12', '天气越来越热了，你都是怎么给宝宝穿搭衣服的呢？', '夏天应该怎么给宝宝穿衣服，才能让宝宝不热还舒适呢？', '180', '1', '1', '2');
+INSERT INTO `topic` VALUES (1, '11', '暑假带宝宝出游得准备哪写东西？', '从怀孕到生产，再到养娃，再渡过初为人母的这一年多时间后,很多妈妈蠢蠢欲动，想要带娃出去走走。现在娃还小，可以出去吗。如果要出去，需要准备哪些东西呢？有出行经验的妈妈可以在下方回复，和新手妈妈们聊一聊夏天带娃的那些事儿...', '42', '2', '3', '1');
+INSERT INTO `topic` VALUES (2, '12', '天气越来越热了，你都是怎么给宝宝穿搭衣服的呢？', '夏天应该怎么给宝宝穿衣服，才能让宝宝不热还舒适呢？', '183', '1', '1', '2');
 INSERT INTO `topic` VALUES (3, '11', '你们给宝宝买了哪种餐椅？你觉得哪种餐椅更好用？', '你们给宝宝买了哪种餐椅？你觉得哪种餐椅更好用？你们给宝宝买了哪种餐椅？你觉得哪种餐椅更好用？\n', '6', '0', '0', NULL);
 INSERT INTO `topic` VALUES (4, '13', '在不知道宝宝性别的时候，给宝宝准备哪写东西以后不会浪费？', '在不知道宝宝性别的时候，给宝宝准备哪写东西以后不会浪费？在不知道宝宝性别的时候，给宝宝准备哪写东西以后不会浪费？', '9', '0', '0', NULL);
-INSERT INTO `topic` VALUES (6, '1', '孕期为了娃健康 这些事准爸爸别做', '怀孕期间的禁忌有很多，不光是孕妇本身要注意，准爸爸需要注意的地方也有很多，以下就是孕期准爸爸不宜做的几件事。', '12', '1', '3', '6');
+INSERT INTO `topic` VALUES (6, '1', '孕期为了娃健康 这些事准爸爸别做', '怀孕期间的禁忌有很多，不光是孕妇本身要注意，准爸爸需要注意的地方也有很多，以下就是孕期准爸爸不宜做的几件事。', '14', '1', '3', '6');
 INSERT INTO `topic` VALUES (7, '11', '你家娃啥性格 看睡姿就知道了', '很多家长都好奇自己家的娃长大了是啥性格，其实性格跟很多因素有关，跟宝宝的睡姿也是有关系的，所以想知道自己娃什么性格，看宝宝睡姿就行了。', '3', '0', '0', NULL);
-INSERT INTO `topic` VALUES (8, '11', '清明节孕妇可以出门吗 这些禁忌要知道', '马上就要到清明节了，清明节是我国的传统节日，有很多的习俗和禁忌，那么清明节孕妇可以出门吗？', '1', '0', '1', '7');
+INSERT INTO `topic` VALUES (8, '11', '清明节孕妇可以出门吗 这些禁忌要知道', '马上就要到清明节了，清明节是我国的传统节日，有很多的习俗和禁忌，那么清明节孕妇可以出门吗？', '3', '1', '1', '7');
 INSERT INTO `topic` VALUES (9, '2', '六一儿童节给孩子选玩具 要注意安全第一', '今天是一年一度的六一儿童节，爸爸妈妈有没有想好送孩子什么呢？很多家长都想要送学龄前儿童玩具，不过要选择什么样的玩具却成了一个难题。', '1', '0', '0', NULL);
 INSERT INTO `topic` VALUES (10, '9', '陕西某幼儿园给孩子长期服用病毒灵', '孩子身体好好的，幼儿园老师却给他们分发处方药“病毒灵”，所有孩子集体吃。陕西西安一家幼儿园未告知家长便私自给全园孩子服药，引起家长的强烈不满，家长们更担心吃药会对孩子产生副作用。', '0', '0', '0', NULL);
 INSERT INTO `topic` VALUES (11, '9', '专家回应疑似疫苗致婴儿死亡6大质疑', '根据中国疾控中心提供的最新数据，从2000年到今年12月份，接种乙肝疫苗后死亡的疑似异常反应病例已上报188例。其中，最终确定为疫苗异常反应的18例，近年每年有四五例。', '0', '0', '0', NULL);
@@ -249,15 +267,8 @@ CREATE TABLE `user`  (
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES (1, 'siren', NULL, '2', 'balabala', '1');
-INSERT INTO `user` VALUES (2, 'toki', NULL, '1', 'adadadada', '2');
-INSERT INTO `user` VALUES (3, 'miko', NULL, '2', 'dasdasdasd', '3');
-INSERT INTO `user` VALUES (4, 'alen', NULL, '1', 'dasdasd', '3');
-INSERT INTO `user` VALUES (5, 'taylor', NULL, '2', 'aaaaaa', '1');
-INSERT INTO `user` VALUES (6, 'lakens', NULL, '2', '2312312312', '2');
-INSERT INTO `user` VALUES (7, 'askie', NULL, '2', '13131', '2');
 INSERT INTO `user` VALUES (9, '亚提密斯', 'o7em15MDf4I3iizGHTMtaaccDOD4', '1', 'http://q0fobvvwa.bkt.clouddn.com/parenting/9_1573205047949', '1');
-INSERT INTO `user` VALUES (10, '尘', 'o7em15OqogBN5gdxEHvte8pcy3Ks', '1', 'https://wx.qlogo.cn/mmopen/vi_32/wcTPf9ibxEVXl9o1Ugj7UxHNGaibYHdgXd3O2pian6oVt3SibPdvHoXFxloSjqbVsh5fibBMPbuJxXId3fZoRczOmtw/132', '0');
+INSERT INTO `user` VALUES (10, '尘', 'o7em15OqogBN5gdxEHvte8pcy3Ks', '1', 'https://wx.qlogo.cn/mmopen/vi_32/wcTPf9ibxEVXl9o1Ugj7UxHNGaibYHdgXd3O2pian6oVt3SibPdvHoXFxloSjqbVsh5fibBMPbuJxXId3fZoRczOmtw/132', '1');
 
 -- ----------------------------
 -- Table structure for user_answer
@@ -269,7 +280,7 @@ CREATE TABLE `user_answer`  (
   `answer_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT NULL,
   `type` int(11) NULL DEFAULT NULL COMMENT '1为点赞，2为收藏',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_bin ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_bin ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of user_answer
@@ -277,6 +288,9 @@ CREATE TABLE `user_answer`  (
 INSERT INTO `user_answer` VALUES (1, '9', '1', 1);
 INSERT INTO `user_answer` VALUES (2, '9', '4', 1);
 INSERT INTO `user_answer` VALUES (3, '9', '6', 1);
+INSERT INTO `user_answer` VALUES (4, '9', '7', 2);
+INSERT INTO `user_answer` VALUES (5, '10', '1', 1);
+INSERT INTO `user_answer` VALUES (6, '10', '1', 2);
 
 -- ----------------------------
 -- Table structure for user_topic
@@ -287,7 +301,7 @@ CREATE TABLE `user_topic`  (
   `user_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT NULL,
   `topic_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_bin ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_bin ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of user_topic
@@ -295,5 +309,7 @@ CREATE TABLE `user_topic`  (
 INSERT INTO `user_topic` VALUES (1, '9', '2');
 INSERT INTO `user_topic` VALUES (2, '9', '1');
 INSERT INTO `user_topic` VALUES (3, '9', '6');
+INSERT INTO `user_topic` VALUES (4, '9', '8');
+INSERT INTO `user_topic` VALUES (5, '10', '1');
 
 SET FOREIGN_KEY_CHECKS = 1;
