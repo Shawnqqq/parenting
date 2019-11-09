@@ -14,6 +14,7 @@ const wxAnswerController = require('../controllers/wxAnswer')
 const qiniuController = require('../controllers/qiniu')
 const tableController = require('../controllers/table')
 const bannerController = require('../controllers/banner')
+const articleController = require('../controllers/article')
 
 // 登录
 router.post('/auth/login',authController.login)
@@ -67,6 +68,12 @@ router.get('/banner',middleAuth,bannerController.all)
 router.get('/banner/:id',middleAuth,bannerController.single)
 router.put('/banner/:id',middleAuth,bannerController.update)
 router.delete('/banner/:id',middleAuth,bannerController.delete)
+// 文章管理
+router.post('/article',middleAuth,articleController.insert)
+router.get('/article',middleAuth,articleController.all)
+router.get('/article/:id',middleAuth,articleController.single)
+router.put('/article/:id',middleAuth,articleController.update)
+router.delete('/article/:id',middleAuth,articleController.delete)
 
 // 七牛云 
 router.get('/qiniu',qiniuController.upload)
