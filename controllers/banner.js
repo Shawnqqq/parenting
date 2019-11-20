@@ -45,7 +45,7 @@ const bannerController = {
     try{
       let data = await bannerModels.where({'banner.id':id})
         .leftJoin('article','banner.pages','article.id')
-        .column('article.content','article.title')
+        .column('article.content','article.title','banner.pages')
       res.json({
         code:200,
         data:data[0]

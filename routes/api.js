@@ -12,7 +12,7 @@ const answerController = require('../controllers/answer')
 const wxTopicController = require('../controllers/wxTopic')
 const wxAnswerController = require('../controllers/wxAnswer')
 const qiniuController = require('../controllers/qiniu')
-const tableController = require('../controllers/table')
+const recommendController = require('../controllers/recommend')
 const bannerController = require('../controllers/banner')
 const articleController = require('../controllers/article')
 
@@ -31,6 +31,7 @@ router.get('/userInfo',middleAuth,userController.user);
 router.get('/user/:id',middleAuth,userController.single);
 router.put('/user/:id',middleAuth,userController.update);
 router.delete('/user/:id',middleAuth,userController.delete);
+router.get('/userSingle/:id',middleAuth,userController.moreSingle);
 // 分类 接口
 router.post('/category',middleAuth,categoryController.insert);
 router.put('/category/:id',middleAuth,categoryController.update);
@@ -46,6 +47,9 @@ router.delete('/topic/:id',middleAuth,topicController.delete);
 router.put('/topicShow/:id',middleAuth,topicController.showAnswer)
 // 回答 接口
 router.get('/answer/:id',middleAuth,answerController.single)
+router.delete('/answer/:id',middleAuth,answerController.delete)
+router.get('/answerToday',middleAuth,answerController.today)
+router.get('/answerSingle/:id',middleAuth,answerController.answerSingle)
 // 合辑接口
 router.post('/column',middleAuth,columnController.insert)
 router.get('/column',middleAuth,columnController.all)
@@ -56,12 +60,12 @@ router.get('/columnUnSelected/:id',middleAuth,columnController.UnSelected)
 router.post('/columnSelected',middleAuth,columnController.insertTopic)
 router.put('/columnSelected',middleAuth,columnController.deleteTopic)
 // 首页接口
-router.get('/table/1/selected',middleAuth,tableController.recommend)
-router.get('/table/1/unSelected',middleAuth,tableController.unRecommend)
-router.get('/table/2/selected',middleAuth,tableController.answer)
-router.get('/table/2/unSelected',middleAuth,tableController.unAnswer)
-router.post('/table',middleAuth,tableController.insert)
-router.put('/table',middleAuth,tableController.deleted)
+router.get('/table/1/selected',middleAuth,recommendController.recommend)
+router.get('/table/1/unSelected',middleAuth,recommendController.unRecommend)
+router.get('/table/2/selected',middleAuth,recommendController.answer)
+router.get('/table/2/unSelected',middleAuth,recommendController.unAnswer)
+router.post('/table',middleAuth,recommendController.insert)
+router.put('/table',middleAuth,recommendController.deleted)
 // 轮播图banner接口
 router.post('/banner',middleAuth,bannerController.insert)
 router.get('/banner',middleAuth,bannerController.all)
@@ -97,8 +101,8 @@ router.get('/wxColumn',columnController.all)          // 全部合辑
 router.get('/wxColumn/:id',columnController.single)   // 单个合辑
 router.get('/wxColumnSelected/:id',columnController.selected)  // 合辑的话题
 
-router.get('/wxRecommend',tableController.wxRecommend)   // 推荐的话题
-router.get('/wxAnswer',tableController.wxAnswer)       // 推荐的答题
+router.get('/wxRecommend',recommendController.wxRecommend)   // 推荐的话题
+router.get('/wxAnswer',recommendController.wxAnswer)       // 推荐的答题
 router.get('/wxBanner',bannerController.all)           // 轮播
 router.get('/wxBanner/:id',bannerController.single)
 

@@ -3,6 +3,7 @@ const user_topicModels = require('../models/user_topic')
 const user_answerModels = require('../models/user_answer')
 const replyModels = require('../models/reply')
 const answerModels = require('../models/answer')
+const {formatDate} = require('../utils/formatDate');
 
 const userController ={
     single: async function(req,res,next){
@@ -20,6 +21,46 @@ const userController ={
             res.json({
                 code:0,
                 message:'查找失败'
+            })
+        }
+    },
+    moreSingle:async function(req,res,next){
+        let id = req.params.id;
+        try{
+            let topic = await userModels.where({"user.id":id})
+                .leftJoin('user_topic','user.id','user_topic.user_id')
+                .column({'topic_id':'user_topic.topic_id'})
+                .leftJoin('topic','topic_id','topic.id')
+                .column('topic.title','topic.category_id','topic.pv','topic.follow','topic.answer_num','topic.text')
+                .leftJoin('category','topic.category_id','category.id')
+                .column({'category_name':'category.name'})
+            let collect = await user_answerModels.where({'user_answer.user_id':id,'user_answer.type':2})
+                .leftJoin('answer','user_answer.answer_id','answer.id')
+                .column({'topic_id':'answer.topic_id'},'answer.text','answer.create_time','answer.praise','answer.collect')
+                .leftJoin('topic','topic_id','topic.id')
+                .column('topic.title')
+            collect.forEach(data=>{
+                data.create_time = formatDate(data.create_time)
+            })
+            let answer = await answerModels.where({'answer.user_id':id})
+                .leftJoin('topic','answer.topic_id','topic.id')
+                .column('answer.id','answer.text','topic.title','answer.create_time','answer.praise','answer.collect')
+            answer.forEach(data=>{
+                data.create_time = formatDate(data.create_time)
+            })
+            res.json({
+                code:200,
+                data:{
+                    topic,
+                    collect,
+                    answer
+                }
+            })
+        }catch(err){
+            console.log(err)
+            res.json({
+                code:0,
+                message:'服务器错误'
             })
         }
     },

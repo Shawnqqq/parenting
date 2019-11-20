@@ -1,5 +1,4 @@
 const topicModels = require('../models/topic')
-const categoryModels = require('../models/category')
 const answerModels = require('../models/answer')
 const {formatDate} = require('../utils/formatDate');
 
@@ -62,13 +61,16 @@ const topicController = {
       let nowPage= req.query.nowPage || 1  // 显示当前页数
       let offset = (nowPage-1)*pageSize   // 从多少条开始拿
       let filter = req.query.filter
-      let sort
       let topic
       let totals
       if(filter){
-        sort = await categoryModels.where({name:filter})
-        topic = await topicModels.sortPagination(pageSize,offset,sort)
-        totals = await topicModels.sortTotal(sort)
+        topic = await topicModels.where({category_id:filter})
+          .leftJoin('category','topic.category_id','category.id')
+          .column('topic.id','topic.title','topic.text','category.name',
+            'topic.pv','topic.follow','topic.answer_num')
+          .offset(offset)
+          .limit(pageSize)
+        totals = await topicModels.where({category_id:filter})
       }else{
         topic = await topicModels.all()
         .leftJoin('category','topic.category_id','category.id')
@@ -79,6 +81,7 @@ const topicController = {
         totals = await topicModels.all()
       }
       let total = totals.length
+
       res.json({
         code:200,
         data:topic,

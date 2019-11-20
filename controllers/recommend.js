@@ -1,10 +1,10 @@
-const tableModels = require('../models/table')
+const recommendModels = require('../models/recommend')
 const topicModels = require('../models/topic')
 
-const tableController = {
+const recommendController = {
   recommend: async function(req,res,next){
     try{
-      let topicIds = await tableModels.where({table_id:1})
+      let topicIds = await recommendModels.where({table_id:1})
       let topicId = topicIds.map(data=>{
         return data.topic_id
       })
@@ -29,7 +29,7 @@ const tableController = {
     let nowPage= req.query.nowPage || 1  // 显示当前页数
     let offset = (nowPage-1)*pageSize   // 从多少条开始拿
     try{
-      let topicIds = await tableModels.where({table_id:1})  
+      let topicIds = await recommendModels.where({table_id:1})  
       let topicId = topicIds.map(data=>{
         return data.topic_id
       })
@@ -56,7 +56,7 @@ const tableController = {
   },
   answer: async function(req,res,next){
     try{
-      let topicIds = await tableModels.where({table_id:2})
+      let topicIds = await recommendModels.where({table_id:2})
       let topicId = topicIds.map(data=>{
         return data.topic_id
       })
@@ -81,7 +81,7 @@ const tableController = {
     let nowPage= req.query.nowPage || 1  // 显示当前页数
     let offset = (nowPage-1)*pageSize   // 从多少条开始拿
     try{
-      let topicIds = await tableModels.where({table_id:2})  
+      let topicIds = await recommendModels.where({table_id:2})  
       let topicId = topicIds.map(data=>{
         return data.topic_id
       })
@@ -116,7 +116,7 @@ const tableController = {
       return
     }
     try{
-      await tableModels.insert(params)
+      await recommendModels.insert(params)
       res.json({
         code:200,
         message:'增加成功'
@@ -139,7 +139,7 @@ const tableController = {
       return
     }
     try{
-      await tableModels.whereIn(['table_id','topic_id'],params).del()
+      await recommendModels.whereIn(['table_id','topic_id'],params).del()
       res.json({
         code:200,
         message:'删除成功'
@@ -154,7 +154,7 @@ const tableController = {
   },
   wxRecommend: async function(req,res,next){
     try{
-      let topicIds = await tableModels.where({table_id:1})
+      let topicIds = await recommendModels.where({table_id:1})
       let topicId = topicIds.map(data=>{
         return data.topic_id
       })
@@ -178,7 +178,7 @@ const tableController = {
   },
   wxAnswer: async function(req,res,next){
     try{
-      let topicIds = await tableModels.where({table_id:2})
+      let topicIds = await recommendModels.where({table_id:2})
       let topicId = topicIds.map(data=>{
         return data.topic_id
       })
@@ -202,4 +202,4 @@ const tableController = {
   }
 }
 
-module.exports = tableController;
+module.exports = recommendController;

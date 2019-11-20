@@ -71,28 +71,5 @@ class Base {
             .select()
         }
     }
-    // 数据分类与筛选
-    sortPagination(pageSize,offset,sort){
-        if(sort[0]){
-            return knex(this.table)
-                .where({category_id:sort[0].id})
-                .leftJoin('category','topic.category_id','category.id')
-                .column('topic.id','topic.title','topic.text','category.name',
-                  'topic.pv','topic.follow','topic.answer_num')
-                .offset(offset)
-                .limit(pageSize)
-        }else{
-            return null
-        }
-    }
-    // 总数
-    sortTotal(sort){
-        if(sort[0]){
-            return knex(this.table)
-                .where({category_id:sort[0].id})
-        }else{
-            return 0
-        }
-    }
 }
 module.exports = Base
