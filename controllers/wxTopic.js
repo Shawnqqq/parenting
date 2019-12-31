@@ -74,7 +74,10 @@ const wxTopicController={
         .limit(10)
       let answer_id = answer.map(data=>{return data.id})
       let reply = await replyModels.whereIn('answer_id',answer_id)
-      let praise = await user_answerModels.where({user_id:user_id,type:1}).whereIn('answer_id',answer_id)
+      let praise = await user_answerModels.where({user_id:user_id,type:1}).whereIn('answer_id',answer_id);
+      let repeat = await user_topicModels.where({topic_id,user_id});
+      let follow = false;
+      repeat.length ? follow = true : follow = false;
       let answer_val = answer.map(data=>{
         let replyTotal = 0
         reply.forEach(arr =>{
@@ -93,7 +96,8 @@ const wxTopicController={
         code:200,
         topic:topic[0],
         answer:answer_val,
-        nowPage:nowPage
+        nowPage:nowPage,
+        follow
       })
     }catch(err){
       console.log(err)
