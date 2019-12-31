@@ -11,7 +11,7 @@
  Target Server Version : 100316
  File Encoding         : 65001
 
- Date: 31/12/2019 15:14:29
+ Date: 31/12/2019 19:00:59
 */
 
 SET NAMES utf8mb4;
@@ -30,7 +30,7 @@ CREATE TABLE `answer`  (
   `praise` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT '0',
   `collect` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT '0',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_bin ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 12 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_bin ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of answer
@@ -43,6 +43,7 @@ INSERT INTO `answer` VALUES (5, '9', '6', '<p>女人在怀孕之后，身体会�
 INSERT INTO `answer` VALUES (6, '9', '6', '<p>怀孕后女人的情绪非常不稳定，一会高兴，一会悲伤的，那么作为另一半来说就要适时去安慰一下了，不要去指责妻子，应该给妻子更多的理解和包容，况且孕妈的心情好坏会直接影响到肚子里的娃，吵架只会让夫妻感情越来越不好，孕妇心情也受到影响，孕妇心情一不好，胎儿就会受影响。</p>', '2019-11-09 17:25:08', '1', '0');
 INSERT INTO `answer` VALUES (9, '9', '9', '<p><img src=\"http://q3d5zbn7j.bkt.clouddn.com/parenting/9_1574240525235\"></p><p>家长们可以更多关注玩具的品质。真正能促进孩童成长的玩具不一定是所谓的智能高端，一个好的玩具其实是10%的玩具本身加上90%的玩耍力。玩具本身不是最重要的，在玩耍中所锻炼的能力和学习才是关键。低结构玩具推荐：乐高、积木、磁力片、雪花片等……</p>', '2019-11-20 17:02:10', '1', '0');
 INSERT INTO `answer` VALUES (10, '9', '7', '<p wx:nodeid=\"32\">大多数家长在生孩子之前和之后都会担心自己的孩子性格不好，其实这可以从宝宝睡觉的姿势窥见一斑。有一些宝宝可以翻身之后就很不老实了。他们有的喜欢趴着睡，有的喜欢侧着睡，有的则是睡得千奇百怪。母亲们可能只会给孩子盖好被子，而从未想到可以从这些睡姿中了解宝宝的性格。孩子睡着了，对父母来讲也许是一件省心的事情，因为孩子不在闹腾了，但是如果把孩子放在床上不再管他，就会错过很多了解孩子的机会。</p>', '2019-12-31 15:11:52', '0', '0');
+INSERT INTO `answer` VALUES (11, '12', '1', '<p>准备好你的娃娃</p>', '2019-12-31 15:35:44', '0', '0');
 
 -- ----------------------------
 -- Table structure for article
@@ -204,7 +205,7 @@ CREATE TABLE `reply`  (
   `text` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT NULL,
   `create_time` timestamp(0) NULL DEFAULT current_timestamp(0),
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_bin ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_bin ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of reply
@@ -215,6 +216,7 @@ INSERT INTO `reply` VALUES (3, '2', '9', '很好', '2019-11-03 22:12:49');
 INSERT INTO `reply` VALUES (4, '1', '9', '写的真棒', '2019-11-03 23:05:03');
 INSERT INTO `reply` VALUES (6, '1', '9', '很有帮助', '2019-11-09 17:20:43');
 INSERT INTO `reply` VALUES (7, '1', '9', '太厉害了', '2019-11-09 17:20:50');
+INSERT INTO `reply` VALUES (8, '3', '11', '给力', '2019-12-31 15:31:30');
 
 -- ----------------------------
 -- Table structure for topic
@@ -235,14 +237,14 @@ CREATE TABLE `topic`  (
 -- ----------------------------
 -- Records of topic
 -- ----------------------------
-INSERT INTO `topic` VALUES (1, '11', '暑假带宝宝出游得准备哪写东西？', '从怀孕到生产，再到养娃，再渡过初为人母的这一年多时间后,很多妈妈蠢蠢欲动，想要带娃出去走走。现在娃还小，可以出去吗。如果要出去，需要准备哪些东西呢？有出行经验的妈妈可以在下方回复，和新手妈妈们聊一聊夏天带娃的那些事儿...', '47', '2', '2', '1');
-INSERT INTO `topic` VALUES (2, '12', '天气越来越热了，你都是怎么给宝宝穿搭衣服的呢？', '夏天应该怎么给宝宝穿衣服，才能让宝宝不热还舒适呢？', '188', '1', '1', '2');
+INSERT INTO `topic` VALUES (1, '11', '暑假带宝宝出游得准备哪写东西？', '从怀孕到生产，再到养娃，再渡过初为人母的这一年多时间后,很多妈妈蠢蠢欲动，想要带娃出去走走。现在娃还小，可以出去吗。如果要出去，需要准备哪些东西呢？有出行经验的妈妈可以在下方回复，和新手妈妈们聊一聊夏天带娃的那些事儿...', '66', '2', '3', '1');
+INSERT INTO `topic` VALUES (2, '12', '天气越来越热了，你都是怎么给宝宝穿搭衣服的呢？', '夏天应该怎么给宝宝穿衣服，才能让宝宝不热还舒适呢？', '191', '1', '1', '2');
 INSERT INTO `topic` VALUES (3, '11', '你们给宝宝买了哪种餐椅？你觉得哪种餐椅更好用？', '你们给宝宝买了哪种餐椅？你觉得哪种餐椅更好用？你们给宝宝买了哪种餐椅？你觉得哪种餐椅更好用？\n', '6', '0', '0', NULL);
 INSERT INTO `topic` VALUES (4, '13', '在不知道宝宝性别的时候，给宝宝准备哪写东西以后不会浪费？', '在不知道宝宝性别的时候，给宝宝准备哪写东西以后不会浪费？在不知道宝宝性别的时候，给宝宝准备哪写东西以后不会浪费？', '9', '0', '0', NULL);
-INSERT INTO `topic` VALUES (6, '1', '孕期为了娃健康 这些事准爸爸别做', '怀孕期间的禁忌有很多，不光是孕妇本身要注意，准爸爸需要注意的地方也有很多，以下就是孕期准爸爸不宜做的几件事。', '17', '1', '3', '6');
-INSERT INTO `topic` VALUES (7, '11', '你家娃啥性格 看睡姿就知道了', '很多家长都好奇自己家的娃长大了是啥性格，其实性格跟很多因素有关，跟宝宝的睡姿也是有关系的，所以想知道自己娃什么性格，看宝宝睡姿就行了。', '6', '0', '1', NULL);
-INSERT INTO `topic` VALUES (8, '11', '清明节孕妇可以出门吗 这些禁忌要知道', '马上就要到清明节了，清明节是我国的传统节日，有很多的习俗和禁忌，那么清明节孕妇可以出门吗？', '7', '1', '0', NULL);
-INSERT INTO `topic` VALUES (9, '2', '六一儿童节给孩子选玩具 要注意安全第一', '今天是一年一度的六一儿童节，爸爸妈妈有没有想好送孩子什么呢？很多家长都想要送学龄前儿童玩具，不过要选择什么样的玩具却成了一个难题。', '6', '1', '1', '9');
+INSERT INTO `topic` VALUES (6, '1', '孕期为了娃健康 这些事准爸爸别做', '怀孕期间的禁忌有很多，不光是孕妇本身要注意，准爸爸需要注意的地方也有很多，以下就是孕期准爸爸不宜做的几件事。', '22', '1', '3', '6');
+INSERT INTO `topic` VALUES (7, '11', '你家娃啥性格 看睡姿就知道了', '很多家长都好奇自己家的娃长大了是啥性格，其实性格跟很多因素有关，跟宝宝的睡姿也是有关系的，所以想知道自己娃什么性格，看宝宝睡姿就行了。', '8', '0', '1', NULL);
+INSERT INTO `topic` VALUES (8, '11', '清明节孕妇可以出门吗 这些禁忌要知道', '马上就要到清明节了，清明节是我国的传统节日，有很多的习俗和禁忌，那么清明节孕妇可以出门吗？', '8', '1', '0', NULL);
+INSERT INTO `topic` VALUES (9, '2', '六一儿童节给孩子选玩具 要注意安全第一', '今天是一年一度的六一儿童节，爸爸妈妈有没有想好送孩子什么呢？很多家长都想要送学龄前儿童玩具，不过要选择什么样的玩具却成了一个难题。', '9', '1', '1', '9');
 INSERT INTO `topic` VALUES (10, '9', '陕西某幼儿园给孩子长期服用病毒灵', '孩子身体好好的，幼儿园老师却给他们分发处方药“病毒灵”，所有孩子集体吃。陕西西安一家幼儿园未告知家长便私自给全园孩子服药，引起家长的强烈不满，家长们更担心吃药会对孩子产生副作用。', '0', '0', '0', NULL);
 INSERT INTO `topic` VALUES (11, '9', '专家回应疑似疫苗致婴儿死亡6大质疑', '根据中国疾控中心提供的最新数据，从2000年到今年12月份，接种乙肝疫苗后死亡的疑似异常反应病例已上报188例。其中，最终确定为疫苗异常反应的18例，近年每年有四五例。', '0', '0', '0', NULL);
 INSERT INTO `topic` VALUES (12, '2', '单独二胎最新消息 浙江舟山启动单独二孩政策', '单独二胎最新消息，浙江舟山特批启动单独二孩政策。特批政策从2013年11月 19日起实施。', '1', '0', '0', NULL);
@@ -261,13 +263,15 @@ CREATE TABLE `user`  (
   `avatar` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT NULL,
   `state` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT '0' COMMENT '1为未孕，2为怀孕，3为有宝贝',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_bin ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 13 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_bin ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of user
 -- ----------------------------
 INSERT INTO `user` VALUES (9, '亚提密斯', 'o7em15MDf4I3iizGHTMtaaccDOD4', '1', 'http://q3d5zbn7j.bkt.clouddn.com/parenting/9_1573205047949', '1');
-INSERT INTO `user` VALUES (10, '尘', 'o7em15OqogBN5gdxEHvte8pcy3Ks', '1', 'https://wx.qlogo.cn/mmopen/vi_32/wcTPf9ibxEVXl9o1Ugj7UxHNGaibYHdgXd3O2pian6oVt3SibPdvHoXFxloSjqbVsh5fibBMPbuJxXId3fZoRczOmtw/132', '1');
+INSERT INTO `user` VALUES (10, '尘', 'o7em15OqogBN5gdxEHvte8pcy3Ks', '1', 'https://wx.qlogo.cn/mmopen/vi_32/wcTPf9ibxEVXl9o1Ugj7UxHNGaibYHdgXd3O2pian6oVt3SibPdvHoXFxloSjqbVsh5fibBMPbuJxXId3fZoRczOmtw/132', '3');
+INSERT INTO `user` VALUES (11, 'え', 'o7em15EwSilxYQzyouKI_8dzEWeo', '1', 'https://wx.qlogo.cn/mmopen/vi_32/fH5ialbibyrWiaW4k9rbIIcgianLyORetddrsjfAre9ialhaJ5rv3YYI4SkHaeW2PQryKZibkMAoEsWZwKB72cpc4eEQ/132', '0');
+INSERT INTO `user` VALUES (12, '无名有我~阿涛', 'o7em15DrVbEsFBRiAEkT__7fOVxI', '0', 'https://wx.qlogo.cn/mmopen/vi_32/BYLMwpKY3VrycxWtoVTdD8Hb7DJ2o0pfPdNDMiafEZstqoiazXseaKhHcM25PICUicgv6qGPYJ4DZVMF7icAMTDibnQ/132', '2');
 
 -- ----------------------------
 -- Table structure for user_answer
