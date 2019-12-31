@@ -9,14 +9,14 @@ const qiniuController = {
       const mac = new qiniu.auth.digest.Mac(accessKey,secretKey);
       
       const options = {
-        scope:'shawn-hub'
+        scope:'ycl-hub'
       }
       var putPolicy = new qiniu.rs.PutPolicy(options);
       var uploadToken=putPolicy.uploadToken(mac);
 
       res.json({
         token:uploadToken,
-        domain:'http://q0fobvvwa.bkt.clouddn.com/'
+        domain:'http://q3d5zbn7j.bkt.clouddn.com/'
       })
     }
     catch(err){
